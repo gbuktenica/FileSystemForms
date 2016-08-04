@@ -22,7 +22,14 @@ C:\Users\<ProfilePath>\Documents\WindowsPowerShell\Modules\FileSystemForms\<vers
 	eg C:\Users\Glen\Documents\WindowsPowerShell\Modules\FileSystemForms\1.0.0.0
 ## Usage 
 
-TODO: Write usage instructions 
+Import-Module FileSystemForms -Force
+
+$FileSavePath = Select-FileSystemForm -Start ([Environment]::GetFolderPath('MyDocuments')) -Description "Save File" -Ext "csv" -File -Save
+
+$TextFile     = Select-FileSystemForm -File -Ext txt -Start c:\scripts | ForEach {Get-Content $_}
+
+$FileOpenPath = Select-FileSystemForm -File -ErrorAction Stop
+ 
 
 ## Contributing 
 Pull request against a development branch.
