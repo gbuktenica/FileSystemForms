@@ -26,7 +26,7 @@ Import-Module FileSystemForms -Force
 
 $FileSavePath = Select-FileSystemForm -Start ([Environment]::GetFolderPath('MyDocuments')) -Description "Save File" -Ext "csv" -File -Save
 
-$TextFile     = Select-FileSystemForm -File -Ext txt -Start c:\scripts | ForEach {Get-Content $_}
+$TextFileContent = Select-FileSystemForm -File -Ext txt -Start c:\scripts | ForEach {Get-Content $_}
 
 $FileOpenPath = Select-FileSystemForm -File -ErrorAction Stop
  
