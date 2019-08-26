@@ -1,27 +1,43 @@
-# FileSystemForms 
-Launch a Windows form to allow user selction of files and folders on local or network files systems.
+# FileSystemForms
 
-## Installation 
+Launch a Windows form to allow user selection of files and folders on local or network files systems.
 
-### On-line with PowerShell 5.0
+## Installation
+
+### On-line with PowerShell > 5.0
+
+```PowerShell
 Install-Module -Name FileSystemForms
+```
 
 ### Offline
+
 Copy all files to one of the following locations:
 
-C:\Program Files\WindowsPowerShell\Modules\FileSystemForms\<version> 
+C:\Program Files\WindowsPowerShell\Modules\FileSystemForms\<version>  
+e.g.
 
-	eg C:\Program Files\WindowsPowerShell\Modules\FileSystemForms\1.0.0.0
-	
-C:\Windows\system32\WindowsPowerShell\v1.0\Modules\FileSystemForms\<version>
+```text
+C:\Program Files\WindowsPowerShell\Modules\FileSystemForms\1.0.0.0
+```
 
-	eg C:\Windows\system32\WindowsPowerShell\v1.0\Modules\FileSystemForms\1.0.0.0
-	
-C:\Users\<ProfilePath>\Documents\WindowsPowerShell\Modules\FileSystemForms\<version>
+C:\Windows\system32\WindowsPowerShell\v1.0\Modules\FileSystemForms\<version>  
+e.g.
 
-	eg C:\Users\Glen\Documents\WindowsPowerShell\Modules\FileSystemForms\1.0.0.0
-## Usage 
+```text
+C:\Windows\system32\WindowsPowerShell\v1.0\Modules\FileSystemForms\1.0.0.0
+```
 
+C:\Users\<ProfilePath>\Documents\WindowsPowerShell\Modules\FileSystemForms\<version>  
+e.g.
+
+```text
+C:\Users\Glen\Documents\WindowsPowerShell\Modules\FileSystemForms\1.0.0.0
+```
+
+## Usage
+
+```PowerShell
 Import-Module FileSystemForms -Force
 
 $FileSavePath = Select-FileSystemForm -Start ([Environment]::GetFolderPath('MyDocuments')) -Description "Save File" -Ext "csv" -File -Save
@@ -29,23 +45,4 @@ $FileSavePath = Select-FileSystemForm -Start ([Environment]::GetFolderPath('MyDo
 $TextFileContent = Select-FileSystemForm -File -Ext txt -Start c:\scripts | ForEach {Get-Content $_}
 
 $FileOpenPath = Select-FileSystemForm -File -ErrorAction Stop
- 
-
-## Contributing 
-Pull request against a development branch.
-
-[SemVer](http://semver.org) is used for versioning.
-
-Adhere to the [style guide](https://github.com/PoshCode/PowerShellPracticeAndStyle)
-
-Update [README](README.md) documentation as well to reflect contribution.
-## History 
-
-1.0.0.0 Initial release   - stable
- 
-## Credits 
-
-Glen Buktenica
-
-## License
-https://github.com/gbuktenica/FileSystemForms/blob/master/LICENSE
+```
