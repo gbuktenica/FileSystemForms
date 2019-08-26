@@ -1,7 +1,7 @@
 Function Select-FileSystemForm
 {
-    <#  
-    .SYNOPSIS  
+    <#
+    .SYNOPSIS
         Open or save files or open folders using Windows forms.
 
     .DESCRIPTION
@@ -16,15 +16,15 @@ Function Select-FileSystemForm
         Default value: Select <Folder/File> to <Open/Save>
 
     .PARAMETER Ext
-        [string] Adds an extension filter to file open or save forms. 
-        Default value *.* 
+        [string] Adds an extension filter to file open or save forms.
+        Default value *.*
 
     .PARAMETER File
         [switch] When present this switch uses file open or save forms. Used with the Save switch.
 
     .PARAMETER Save
         [switch] When used with the File switch launches a file save form. When not present launches a file open form.
- 
+
     .EXAMPLE
         Select-FileSystemForm -Start ([Environment]::GetFolderPath('MyDocuments')) -Description "Save File" -Ext "csv" -File -Save
         Windows save file form filtered for *.csv defaulting to the current users my documents folder and the description "Save File"
@@ -41,14 +41,14 @@ Function Select-FileSystemForm
         User form input.
 
     .OUTPUTS
-        Full path of Folder or file    
+        Full path of Folder or file
 
-    .NOTES  
+    .NOTES
         Author     : Glen Buktenica
-	    Version    : 1.0.0.0 20160804 Release 
-    #> 
+	    Version    : 1.0.1 20190826 Release
+    #>
     [CmdletBinding()]
-    Param 
+    Param
     (
         [parameter(Position=1)][string] $Start,
         [parameter(Position=2)][String] $Description,
@@ -86,7 +86,7 @@ Function Select-FileSystemForm
         }
         If ($OpenForm.showdialog() -eq "Cancel")
         {
-            Write-Error "Cancel pressed."  
+            Write-Error "Cancel pressed."
         }
         Write-Verbose $OpenForm.FileName -ErrorAction SilentlyContinue
         $OpenForm.FileName
@@ -107,7 +107,7 @@ Function Select-FileSystemForm
         [void]$OpenForm.ShowDialog([IntPtr]::Zero)
         If (!($OpenForm.FileName))
         {
-            Write-Error "Cancel pressed." 
+            Write-Error "Cancel pressed."
         }
         Else
         {
