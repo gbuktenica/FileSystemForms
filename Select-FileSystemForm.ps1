@@ -1,18 +1,17 @@
-Function Select-FileSystemForm
-{
+Function Select-FileSystemForm {
     <#
     .SYNOPSIS
         Open or save files or open folders using Windows forms.
 
     .DESCRIPTION
-        Launch a Windows form to allow user selction of files and folders on local or network files systems.
+        Launch a Windows form to allow user selection of files and folders on local or network files systems.
 
     .PARAMETER Start
         [string] The start directory for the form.
         Default value: Last path used
 
     .PARAMETER Description
-        [string] Text that is included on the chrome of the form and writen to the console window.
+        [string] Text that is included on the chrome of the form and written to the console window.
         Default value: Select <Folder/File> to <Open/Save>
 
     .PARAMETER Ext
@@ -35,44 +34,38 @@ Function Select-FileSystemForm
 
     .EXAMPLE
         Select-FileSystemForm -ErrorAction Stop
-        Windows folder open form will open. If the cancel button is pressed script processing will stop.
+        Windows folder open form will open. if the cancel button is pressed script processing will stop.
 
     .INPUTS
         User form input.
 
     .OUTPUTS
-        Full path of Folder or file
+        Full path of folder or file
 
     .NOTES
-        Author     : Glen Buktenica
-	    Version    : 1.0.1 20190826 Release
+        License      : MIT License
+        Copyright (c): 2021 Glen Buktenica
+        Release      : v2.0.0 20210420
     #>
     [CmdletBinding()]
-    Param
-    (
-        [parameter(Position=1)][string] $Start,
-        [parameter(Position=2)][String] $Description,
-        [String] $Ext,
-        [Switch] $File,
-        [Switch] $Save
+    Param (
+        [parameter(Position = 1)][string] $Start,
+        [parameter(Position = 2)][string] $Description,
+        [string] $Ext,
+        [switch] $File,
+        [switch] $Save
     )
     # Set Form type and default description based on input switches
     Add-Type -AssemblyName System.Windows.Forms
-    If ($File)
-    {
-        If ($Save)
-        {
+    if ($File) {
+        if ($Save) {
             $OpenForm = New-Object System.Windows.Forms.SaveFileDialog
-            If (!$Description)
-            {
+            if (-not $Description) {
                 $Description = "Select file to save"
             }
-        }
-        Else
-        {
+        } else {
             $OpenForm = New-Object System.Windows.Forms.OpenFileDialog
-            If (!$Description)
-            {
+            if (-not $Description) {
                 $Description = "Select file to open"
             }
         }
@@ -80,39 +73,32 @@ Function Select-FileSystemForm
         # Required in case form opens behind PowerShell console.
         Write-Host $Description
         $OpenForm.InitialDirectory = $Start
-        If ($Ext.length -gt 0)
-        {
+        if ($Ext.length -gt 0) {
             $OpenForm.Filter = "$Ext files (*.$Ext)|*.$Ext|All files (*.*)|*.*"
         }
-        If ($OpenForm.showdialog() -eq "Cancel")
-        {
+        if ($OpenForm.ShowDialog() -eq "Cancel") {
             Write-Error "Cancel pressed."
         }
         Write-Verbose $OpenForm.FileName -ErrorAction SilentlyContinue
         $OpenForm.FileName
         $OpenForm.Dispose()
-    }
-    Else #Open Folder
-    {
-        $DllPath = (Split-Path (Get-Module -Name FileSystemForms).Path) + "\FolderSelect.dll"
-        If (!$Description)
-        {
+    } else {
+        #Open Folder
+        if (-not $Description) {
             $Description = "Select folder to open"
         }
         # Write-Host not Write-Output so return not polluted.
         # Required in case form opens behind PowerShell console.
         Write-Host $Description
-        Add-Type -Path $DllPath
-        $OpenForm = New-Object -TypeName FolderSelect.FolderSelectDialog -Property @{ Title = $Description; InitialDirectory = $Start }
-        [void]$OpenForm.ShowDialog([IntPtr]::Zero)
-        If (!($OpenForm.FileName))
-        {
+        $OpenForm = New-Object -TypeName System.Windows.Forms.FolderBrowserDialog
+        $OpenForm.Description  = $Description
+        #$OpenForm.RootFolder   = "MyComputer"
+        $OpenForm.SelectedPath = $Start
+        if ($OpenForm.ShowDialog() -eq "OK") {
+            Write-Verbose $OpenForm.SelectedPath -ErrorAction SilentlyContinue
+            $OpenForm.SelectedPath
+        } else {
             Write-Error "Cancel pressed."
-        }
-        Else
-        {
-            Write-Verbose $OpenForm.FileName -ErrorAction SilentlyContinue
-            $OpenForm.FileName
         }
     }
 }
