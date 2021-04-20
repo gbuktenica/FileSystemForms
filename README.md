@@ -1,9 +1,24 @@
 # FileSystemForms
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Copyright Glen Buktenica](https://img.shields.io/badge/Copyright-Glen_Buktenica-blue.svg)](https://github.com/gbuktenica)
 
 Launch a Windows form to allow user selection of files and folders on local or network files systems.
+
+## Usage
+
+```PowerShell
+Install-Module -Name FileSystemForms
+Import-Module  -Name FileSystemForms
+
+$FileSavePath    = Select-FileSystemForm -Start ([Environment]::GetFolderPath('MyDocuments')) -Description "Save File" -Ext "csv" -File -Save
+
+$TextFileContent = Select-FileSystemForm -File -Ext txt -Start $PSScriptRoot | ForEach-Object {Get-Content $_}
+
+$FileOpenPath    = Select-FileSystemForm -File -ErrorAction Stop -Verbose
+
+$FolderOpenPath  = Select-FileSystemForm 
+```
 
 ## Installation
 
@@ -21,31 +36,20 @@ C:\Program Files\WindowsPowerShell\Modules\FileSystemForms\<version>
 e.g.
 
 ```text
-C:\Program Files\WindowsPowerShell\Modules\FileSystemForms\1.0.0.0
+C:\Program Files\WindowsPowerShell\Modules\FileSystemForms\2.0.0
 ```
 
 C:\Windows\system32\WindowsPowerShell\v1.0\Modules\FileSystemForms\<version>  
 e.g.
 
 ```text
-C:\Windows\system32\WindowsPowerShell\v1.0\Modules\FileSystemForms\1.0.0.0
+C:\Windows\system32\WindowsPowerShell\v1.0\Modules\FileSystemForms\2.0.0
 ```
 
 C:\Users\<ProfilePath>\Documents\WindowsPowerShell\Modules\FileSystemForms\<version>  
 e.g.
 
 ```text
-C:\Users\Glen\Documents\WindowsPowerShell\Modules\FileSystemForms\1.0.0.0
+C:\Users\Glen\Documents\WindowsPowerShell\Modules\FileSystemForms\2.0.0
 ```
 
-## Usage
-
-```PowerShell
-Import-Module FileSystemForms -Force
-
-$FileSavePath = Select-FileSystemForm -Start ([Environment]::GetFolderPath('MyDocuments')) -Description "Save File" -Ext "csv" -File -Save
-
-$TextFileContent = Select-FileSystemForm -File -Ext txt -Start c:\scripts | ForEach {Get-Content $_}
-
-$FileOpenPath = Select-FileSystemForm -File -ErrorAction Stop
-```

@@ -60,12 +60,12 @@ Function Select-FileSystemForm {
     if ($File) {
         if ($Save) {
             $OpenForm = New-Object System.Windows.Forms.SaveFileDialog
-            if (-not $Description) {
+            if ($Description.length -eq 0) {
                 $Description = "Select file to save"
             }
         } else {
             $OpenForm = New-Object System.Windows.Forms.OpenFileDialog
-            if (-not $Description) {
+            if ($Description.length -eq 0) {
                 $Description = "Select file to open"
             }
         }
@@ -84,7 +84,7 @@ Function Select-FileSystemForm {
         $OpenForm.Dispose()
     } else {
         #Open Folder
-        if (-not $Description) {
+        if ($Description.length -eq 0) {
             $Description = "Select folder to open"
         }
         # Write-Host not Write-Output so return not polluted.
@@ -92,7 +92,6 @@ Function Select-FileSystemForm {
         Write-Host $Description
         $OpenForm = New-Object -TypeName System.Windows.Forms.FolderBrowserDialog
         $OpenForm.Description  = $Description
-        #$OpenForm.RootFolder   = "MyComputer"
         $OpenForm.SelectedPath = $Start
         if ($OpenForm.ShowDialog() -eq "OK") {
             Write-Verbose $OpenForm.SelectedPath -ErrorAction SilentlyContinue
