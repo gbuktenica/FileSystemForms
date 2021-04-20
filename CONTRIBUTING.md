@@ -10,6 +10,15 @@ Adhere to the [style guide](https://github.com/PoshCode/PowerShellPracticeAndSty
 
 Update [README](README.md) documentation as well to reflect contribution.
 
+## Publishing to PowerShellGallery
+
+```powershell
+# Make a new directory: $Env:PSModulePath.split(";")[0]\FileSystemForms\<VERSION>
+# Copy the manifest and Select-FileSystemForm.ps1 to the directory
+# Then run
+Publish-Module -Name 'FileSystemForms' -Exclude "*.md" -NuGetApiKey '<MyKey>'
+```
+
 ## Branching
 
 Note that commits to master / main are prevented in the remote. A precommit hook is located in .githooks that will stop commits to the local master / main.
