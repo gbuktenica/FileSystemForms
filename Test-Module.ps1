@@ -9,12 +9,23 @@ $ModulePath = Get-ChildItem -Path $PSScriptRoot -Filter "*.psd1"
 Import-Module ($ModulePath).FullName
 
 # Test Save a CSV
-Select-FileSystemForm -Start ([Environment]::GetFolderPath('MyDocuments')) -Description "Save File" -Ext "csv" -File -Save
+Write-Output "==========================="
+Select-FileSystemForm -Start ([Environment]::GetFolderPath('MyDocuments')) -Description "This is a test so files will not be written" -Ext "csv" -File -Save
 
 # Test Read a Markdown file
-Select-FileSystemForm -File -Ext md -Start $PSScriptRoot | ForEach-Object {Get-Content $_}
+Write-Output "==========================="
+Select-FileSystemForm -File -Ext md -Start $PSScriptRoot -Description "Select a file to read to the operator window" | ForEach-Object { Get-Content $_}
 
-# Test Select a Folder
+# Test Select a file with no extension
+Write-Output "==========================="
+Select-FileSystemForm -File -Start $PSScriptRoot
+
+# Test Select a Folder from MyDocuments
+Write-Output "==========================="
 Select-FileSystemForm -Start ([Environment]::GetFolderPath('MyDocuments'))
+
+# Test Select a Folder with no start
+Write-Output "==========================="
+Select-FileSystemForm
 
 Remove-Module -Name ([io.path]::GetFileNameWithoutExtension($ModulePath))
