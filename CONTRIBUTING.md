@@ -10,10 +10,18 @@ Adhere to the [style guide](https://github.com/PoshCode/PowerShellPracticeAndSty
 
 Update [README](README.md) documentation as well to reflect contribution.
 
-## History
+## Branching
 
-1.0.1 Version change   - stable
-Change to three digit Semantic Versioning.
-<https://github.com/gbuktenica/FileSystemForms/issues/1>
+Note that commits to master / main are prevented in the remote. A precommit hook is located in .githooks that will stop commits to the local master / main.
 
-1.0.0.0 Initial release   - stable
+To activate it run:
+
+```bash
+git config --local core.hooksPath .githooks/
+```
+
+To confirm that it is set run:
+
+```bash
+git config --local --get core.hooksPath
+```
