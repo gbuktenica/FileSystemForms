@@ -1,9 +1,30 @@
 # FileSystemForms
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Copyright Glen Buktenica](https://img.shields.io/badge/Copyright-Glen_Buktenica-blue.svg)](https://github.com/gbuktenica)
 
 Launch a Windows form to allow user selection of files and folders on local or network files systems.
+
+## Usage
+
+```PowerShell
+Install-Module -Name FileSystemForms
+Import-Module  -Name FileSystemForms
+
+# Select the path and file name for a file to be written to.
+$FileSavePath    = Select-FileSystemForm -Start ([Environment]::GetFolderPath('MyDocuments')) -Description "Save File" -Ext "csv" -File -Save
+
+# Read the contents of a number of text files in to a variable.
+$TextFileContent = Select-FileSystemForm -File -Ext txt -Start $PSScriptRoot | ForEach-Object {Get-Content $_}
+
+# Read the path and file name for a file.
+$FileOpenPath    = Select-FileSystemForm -File -ErrorAction Stop -Verbose
+
+# Read the path of a folder / directory.
+$FolderOpenPath  = Select-FileSystemForm 
+```
+
+![Animation](/images/Animation.gif)
 
 ## Installation
 
@@ -15,37 +36,8 @@ Install-Module -Name FileSystemForms
 
 ### Offline
 
-Copy all files to one of the following locations:
+Copy FileSystemForms.psd1 and Select-FileSystemForm.ps1 to one of the locations contained in:
 
-C:\Program Files\WindowsPowerShell\Modules\FileSystemForms\<version>  
-e.g.
-
-```text
-C:\Program Files\WindowsPowerShell\Modules\FileSystemForms\1.0.0.0
-```
-
-C:\Windows\system32\WindowsPowerShell\v1.0\Modules\FileSystemForms\<version>  
-e.g.
-
-```text
-C:\Windows\system32\WindowsPowerShell\v1.0\Modules\FileSystemForms\1.0.0.0
-```
-
-C:\Users\<ProfilePath>\Documents\WindowsPowerShell\Modules\FileSystemForms\<version>  
-e.g.
-
-```text
-C:\Users\Glen\Documents\WindowsPowerShell\Modules\FileSystemForms\1.0.0.0
-```
-
-## Usage
-
-```PowerShell
-Import-Module FileSystemForms -Force
-
-$FileSavePath = Select-FileSystemForm -Start ([Environment]::GetFolderPath('MyDocuments')) -Description "Save File" -Ext "csv" -File -Save
-
-$TextFileContent = Select-FileSystemForm -File -Ext txt -Start c:\scripts | ForEach {Get-Content $_}
-
-$FileOpenPath = Select-FileSystemForm -File -ErrorAction Stop
+```powershell
+$Env:PSModulePath
 ```

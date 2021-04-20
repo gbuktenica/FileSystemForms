@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Test Module",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${workspaceFolder}/Test-Module.ps1",
+            "args": [
+                "-Verbose"
+            ],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

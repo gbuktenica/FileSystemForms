@@ -10,10 +10,27 @@ Adhere to the [style guide](https://github.com/PoshCode/PowerShellPracticeAndSty
 
 Update [README](README.md) documentation as well to reflect contribution.
 
-## History
+## Publishing to PowerShellGallery
 
-1.0.1 Version change   - stable
-Change to three digit Semantic Versioning.
-<https://github.com/gbuktenica/FileSystemForms/issues/1>
+```powershell
+# Make a new directory: $Env:PSModulePath.split(";")[0]\FileSystemForms\<VERSION>
+# Copy the manifest and Select-FileSystemForm.ps1 to the directory
+# Then run
+Publish-Module -Name 'FileSystemForms' -Exclude "*.md" -NuGetApiKey '<MyKey>'
+```
 
-1.0.0.0 Initial release   - stable
+## Branching
+
+Note that commits to master / main are prevented in the remote. A precommit hook is located in .githooks that will stop commits to the local master / main.
+
+To activate it run:
+
+```bash
+git config --local core.hooksPath .githooks/
+```
+
+To confirm that it is set run:
+
+```bash
+git config --local --get core.hooksPath
+```

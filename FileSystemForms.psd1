@@ -8,112 +8,112 @@
 
 @{
 
-# Script module or binary module file associated with this manifest.
-# RootModule = ''
+    # Script module or binary module file associated with this manifest.
+    # RootModule = ''
 
-# Version number of this module.
-ModuleVersion = '1.0.1'
+    # Version number of this module.
+    ModuleVersion         = '2.0.0'
 
-# ID used to uniquely identify this module
-GUID = '44b0c8dd-0f8d-49b1-8344-a11c50237f34'
+    # ID used to uniquely identify this module
+    GUID                  = '44b0c8dd-0f8d-49b1-8344-a11c50237f34'
 
-# Author of this module
-Author = 'Glen Buktenica'
+    # Author of this module
+    Author                = 'Glen Buktenica'
 
-# Company or vendor of this module
-CompanyName = 'Angry IT'
+    # Company or vendor of this module
+    CompanyName           = 'Angry IT'
 
-# Copyright statement for this module
-Copyright = '(c) 2019 Glen Buktenica. All rights reserved.'
+    # Copyright statement for this module
+    Copyright             = '(c) 2021 Glen Buktenica. All rights reserved.'
 
-# Description of the functionality provided by this module
-Description = 'Launch a Windows form to allow user selction of files and folders on local or network files systems.'
+    # Description of the functionality provided by this module
+    Description           = 'Launch a Windows form to allow user selection of files and folders on local or network files systems.'
 
-# Minimum version of the Windows PowerShell engine required by this module
-# PowerShellVersion = ''
+    # Minimum version of the Windows PowerShell engine required by this module
+    # PowerShellVersion = ''
 
-# Name of the Windows PowerShell host required by this module
-# PowerShellHostName = ''
+    # Name of the Windows PowerShell host required by this module
+    # PowerShellHostName = ''
 
-# Minimum version of the Windows PowerShell host required by this module
-PowerShellHostVersion = '4.0'
+    # Minimum version of the Windows PowerShell host required by this module
+    PowerShellHostVersion = '4.0'
 
-# Minimum version of Microsoft .NET Framework required by this module
-# DotNetFrameworkVersion = ''
+    # Minimum version of Microsoft .NET Framework required by this module
+    # DotNetFrameworkVersion = ''
 
-# Minimum version of the common language runtime (CLR) required by this module
-# CLRVersion = ''
+    # Minimum version of the common language runtime (CLR) required by this module
+    # CLRVersion = ''
 
-# Processor architecture (None, X86, Amd64) required by this module
-# ProcessorArchitecture = ''
+    # Processor architecture (None, X86, Amd64) required by this module
+    # ProcessorArchitecture = ''
 
-# Modules that must be imported into the global environment prior to importing this module
-# RequiredModules = @()
+    # Modules that must be imported into the global environment prior to importing this module
+    # RequiredModules = @()
 
-# Assemblies that must be loaded prior to importing this module
-# RequiredAssemblies = @()
+    # Assemblies that must be loaded prior to importing this module
+    # RequiredAssemblies = @()
 
-# Script files (.ps1) that are run in the caller's environment prior to importing this module.
-# ScriptsToProcess = @()
+    # Script files (.ps1) that are run in the caller's environment prior to importing this module.
+    # ScriptsToProcess = @()
 
-# Type files (.ps1xml) to be loaded when importing this module
-# TypesToProcess = @()
+    # Type files (.ps1xml) to be loaded when importing this module
+    # TypesToProcess = @()
 
-# Format files (.ps1xml) to be loaded when importing this module
-# FormatsToProcess = @()
+    # Format files (.ps1xml) to be loaded when importing this module
+    # FormatsToProcess = @()
 
-# Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-NestedModules = @('Select-FileSystemForm.ps1')
+    # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
+    NestedModules         = @('Select-FileSystemForm.ps1')
 
-# Functions to export from this module
-FunctionsToExport = 'Select-FileSystemForm'
+    # Functions to export from this module
+    FunctionsToExport     = 'Select-FileSystemForm'
 
-# Cmdlets to export from this module
-CmdletsToExport = '*'
+    # Cmdlets to export from this module
+    CmdletsToExport       = '*'
 
-# Variables to export from this module
-VariablesToExport = '*'
+    # Variables to export from this module
+    VariablesToExport     = '*'
 
-# Aliases to export from this module
-AliasesToExport = '*'
+    # Aliases to export from this module
+    AliasesToExport       = '*'
 
-# DSC resources to export from this module
-# DscResourcesToExport = @()
+    # DSC resources to export from this module
+    # DscResourcesToExport = @()
 
-# List of all modules packaged with this module
-# ModuleList = @()
+    # List of all modules packaged with this module
+    # ModuleList = @()
 
-# List of all files packaged with this module
-# FileList = @()
+    # List of all files packaged with this module
+    FileList              = @('Select-FileSystemForm.ps1')
 
-# Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
-PrivateData = @{
+    # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hash table with additional module metadata used by PowerShell.
+    PrivateData           = @{
 
-    PSData = @{
+        PSData = @{
 
-        # Tags applied to this module. These help with module discovery in online galleries.
-        # Tags = @()
+            # Tags applied to this module. These help with module discovery in online galleries.
+            # Tags = @()
 
-        # A URL to the license for this module.
-        LicenseUri = ''
+            # A URL to the license for this module.
+            LicenseUri   = 'https://github.com/gbuktenica/FileSystemForms/blob/master/LICENSE'
 
-        # A URL to the main website for this project.
-        ProjectUri = ''
+            # A URL to the main website for this project.
+            ProjectUri   = 'https://github.com/gbuktenica/FileSystemForms/'
 
-        # A URL to an icon representing this module.
-        # IconUri = ''
+            # A URL to an icon representing this module.
+            # IconUri = ''
 
-        # ReleaseNotes of this module
-        ReleaseNotes = ''
+            # ReleaseNotes of this module
+            ReleaseNotes = 'https://github.com/gbuktenica/FileSystemForms/blob/master/CHANGELOG'
 
-    } # End of PSData hashtable
+        } # End of PSData hash table
 
-} # End of PrivateData hashtable
+    } # End of PrivateData hash table
 
-# HelpInfo URI of this module
-# HelpInfoURI = ''
+    # HelpInfo URI of this module
+    HelpInfoURI           = 'https://github.com/gbuktenica/FileSystemForms/blob/master/README.md'
 
-# Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
-# DefaultCommandPrefix = ''
+    # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
+    # DefaultCommandPrefix = ''
 
 }
